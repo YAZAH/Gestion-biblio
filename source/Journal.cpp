@@ -1,0 +1,159 @@
+/*
+ * Journal.cpp
+ * \brief Fichier code source de la classe Journal
+ * \author Sativen Murden
+ * \version 1.0
+ * \date 2016-04-02
+ */
+
+#include "Journal.h"
+#include <sstream>
+
+
+namespace tp {
+/**
+ * \brief Constructeur de la classe Journal
+ *  Les parametres de cette classe sont:
+ * \param p_auteurs du journal
+ * \param p_titre du journal
+ * \param p_identifiant (Code ISBN) du journal
+ * \param p_annee du journal
+ * \param p_nom du journal
+ * \param p_volume du journal
+ * \param p_nuemro du journal
+ * \param p_page du journal
+ */
+Journal::Journal(const std::string& p_auteurs, const std::string& p_titre,
+		const std::string& p_identifiant, unsigned p_annee,
+		const std::string& p_nom, unsigned p_volume, unsigned p_numero,
+		unsigned p_page) :
+		Reference(p_auteurs, p_titre, p_identifiant, p_annee)
+
+	// TODO Auto-generated constructor stub
+	{
+	m_nom=p_nom;
+	m_volume=p_volume;
+	m_numero=p_numero;
+	m_page=p_page;
+
+	POSTCONDITION(m_nom==p_nom);
+	POSTCONDITION(m_volume=p_volume);
+	POSTCONDITION(m_numero=p_numero);
+	POSTCONDITION(m_page=p_page);
+
+	PRECONDITION(validerFormatNom(m_nom));
+	PRECONDITION(validerCodeIssn(p_identifiant));
+	PRECONDITION(m_volume > 0);
+	PRECONDITION(m_numero > 0);
+	PRECONDITION(m_page > 0);
+
+	INVARIANTS();
+}
+/**
+ * brief Acceseur pour reqNom
+ * return m_nom  le nom de l'objet
+ */
+const std::string& Journal::reqNom() const {
+	return m_nom;
+}
+
+/**
+ * \brief Mutateur pour nom, modifie le nom
+ */
+
+void Journal::asgNom(const std::string& p_nom) {
+	PRECONDITION(!p_nom.empty());
+	m_nom = p_nom;
+	POSTCONDITION(m_nom == p_nom);
+	INVARIANTS();
+}
+
+/**
+ * \brief Mutateur pour volume, modifie le volume
+ */
+
+void Journal::asgVolume(unsigned p_volume) {
+	PRECONDITION(p_volume>0);
+	m_volume = p_volume;
+	POSTCONDITION(m_volume == p_volume);
+	INVARIANTS();
+}
+
+/**
+ * brief Acceseur pour reqVolume
+ * return m_volume le volume de l'objet
+ */
+unsigned Journal::reqVolume() const {
+	return m_volume;
+}
+
+/**
+ * brief Acceseur pour reqNumero
+ * return m_numero  le numero de l'objet
+ */
+unsigned Journal::reqNumero() const {
+	return m_numero;
+}
+
+/**
+ * \brief Mutateur pour numero, modifie le numero
+ */
+
+void Journal::asgNumero(unsigned p_numero) {
+	PRECONDITION(p_numero>0);
+	m_numero = p_numero;
+	POSTCONDITION(m_numero == p_numero);
+	INVARIANTS();
+}
+
+/**
+ * brief Acceseur pour reqPage
+ * return m_page la page de l'objet
+ */
+unsigned Journal::reqPage() const {
+	return m_page;
+}
+
+/**
+ * \brief Mutateur pour page, modifie la page
+ */
+
+void Journal::asgPage(unsigned p_page) {
+	PRECONDITION(p_page>0);
+	m_page = p_page;
+	POSTCONDITION(m_page == p_page);
+	INVARIANTS();
+}
+
+/**
+ * brief Acceseur pour pour reqReferenceFormate
+ * return le format des références
+ */
+std::string Journal::reqReferenceFormate() const {
+	std::ostringstream os;
+	os << Reference::reqReferenceFormate() << "";
+	os << reqNom() << ", ";
+	os << "vol. " << reqVolume() << ", ";
+	os << "no. " << reqNumero() << ", ";
+	os << "pp. " << reqPage() << ", ";
+	os << Reference::reqAnnee() << ". ";
+	os << Reference::reqIdentifiant() << ".";
+	return os.str();
+}
+
+Reference* Journal::clone() const {
+	return new Journal(*this);
+}
+
+Journal::~Journal() {
+	// TODO Auto-generated destructor stub
+}
+
+void Journal::verifieInvariant() const
+{
+	INVARIANT(!(m_nom.empty()));
+	INVARIANT(m_volume > 0);
+	INVARIANT(m_numero > 0);
+	INVARIANT(m_page > 0);
+}
+} /* namespace tp */

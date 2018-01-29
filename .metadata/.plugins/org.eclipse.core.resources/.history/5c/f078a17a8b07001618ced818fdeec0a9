@@ -1,0 +1,32 @@
+#include "supprimerref.h"
+#include <QMessageBox>
+//#include <QtGui/QDialog>
+//#include "ui_supprimerref.h"
+
+supprimerRef::supprimerRef(QWidget *parent)
+    : QDialog(parent)
+{
+	ui.setupUi(this);
+	QObject::connect(ui.BoutonSupprimer, SIGNAL(clicked()), this, SLOT(accept()));
+
+}
+
+supprimerRef::~supprimerRef()
+{
+
+}
+
+QString supprimerRef::retourneASupprimer(){
+	return ui.lineEdit_supprime->text();
+}
+/*QMessageBox msgBox;
+msgBox.setWindowTitle("title");
+msgBox.setText("Question");
+msgBox.setStandardButtons(QMessageBox::Yes);
+msgBox.addButton(QMessageBox::No);
+msgBox.setDefaultButton(QMessageBox::No);
+if(msgBox.exec() == QMessageBox::Yes){
+  // do something
+}else {
+  // do something else
+}*/

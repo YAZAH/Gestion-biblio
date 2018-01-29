@@ -1,0 +1,12 @@
+#include "supprimerref.h"
+
+supprimerRef::supprimerRef(QWidget *parent)
+    : QDialog(parent)
+{
+	ui.setupUi(this);
+}
+
+supprimerRef::~supprimerRef()
+{
+
+}

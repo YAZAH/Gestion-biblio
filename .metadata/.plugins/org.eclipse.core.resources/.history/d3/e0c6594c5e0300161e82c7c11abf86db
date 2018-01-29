@@ -1,0 +1,14 @@
+TEMPLATE = app
+TARGET = Interface
+QT += core \
+    gui
+HEADERS += bibliographiegui.h \
+    interfacegraphique.h
+SOURCES += bibliographiegui.cpp \
+    main.cpp \
+    interfacegraphique.cpp
+FORMS += bibliographiegui.ui \
+    interfacegraphique.ui
+RESOURCES += 
+LIBS += "/home/etudiant/Desktop/MonTP3/source/Debug/libsource.a"
+INCLUDEPATH += "/home/etudiant/Desktop/MonTP3/source/."

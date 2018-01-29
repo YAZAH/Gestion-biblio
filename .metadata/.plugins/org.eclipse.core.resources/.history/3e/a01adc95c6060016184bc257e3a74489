@@ -1,0 +1,203 @@
+/**
+ * \file JournalTesteur.cpp
+ * \brief Testeur unitaire de la classe Journal
+ * \author Yassine Zahoui
+ * \date 2016-03-26
+ */
+
+
+#include <gtest/gtest.h>
+#include "Journal.h"
+#include <iostream>
+#include <sstream>
+using namespace tp;
+using namespace std;
+
+
+/**
+ * \test Test du constructeur
+ *
+ * 		Cas valides: Création d'un objet Journal et vérification de l'assignation de tous les attributs
+ *		Cas invalides:
+ *		    Nom vide
+ *		    Volume =0
+ *		    Numero =0
+ *		    Page =0
+ */
+TEST(Journal, ConstructeurValide)
+{
+	Journal UnJournal("Axe", "Journal du soir", "ISSN 0395-2037", 2010, "LE JOURNAL", 10, 20, 199);
+
+	ASSERT_EQ("Axe", UnJournal.reqAuteurs());
+	ASSERT_EQ("Journal du soir", UnJournal.reqTitre());
+	ASSERT_EQ("ISSN 0395-2037", UnJournal.reqIdentifiant());
+	ASSERT_EQ(2010, UnJournal.reqAnnee());
+	ASSERT_EQ("LE JOURNAL", UnJournal.reqNom());
+	ASSERT_EQ(10, UnJournal.reqVolume());
+	ASSERT_EQ(20, UnJournal.reqNumero());
+	ASSERT_EQ(199, UnJournal.reqPage());
+}
+//cas invalide
+TEST(Journal,ConstructeurInvalideNom)
+{
+	ASSERT_THROW(Journal UnJournal("Axe", "Journal du soir", "ISSN 0395-2037", 2010, "", 10, 20, 199), ContratException);
+
+}
+TEST(Journal,ConstructeurInvalideVolume)
+{
+	ASSERT_THROW(Journal UnJournal("Axe", "Journal du soir", "ISSN 0395-2037", 2010, "LE JOURNAL", 0, 20, 199), ContratException);
+
+}
+TEST(Journal,ConstructeurInvalideNumero)
+{
+	ASSERT_THROW(Journal UnJournal("Axe", "Journal du soir", "ISSN 0395-2037", 2010, "LE JOURNAL", 10, 0, 199),ContratException);
+
+}
+TEST(Journal,ConstructeurInvalidePage)
+{
+	ASSERT_THROW(Journal UnJournal("Axe", "Journal du soir", "ISSN 0395-2037", 2010, "LE JOURNAL", 10, 20, 0),ContratException);
+
+}
+
+/**
+ * \brief Création d'une fixture à utiliser pour les méthodes public de la classe de test
+ */
+class UnJournal: public ::testing::Test
+{
+public:
+	UnJournal() :
+		journal("Rex", "Journal du matin", "ISSN 0395-2037", 2010, "LE PETIT JOURNAL", 10, 20, 30)
+	{}
+	;
+	Journal journal;
+};
+
+/**
+ * \test Test de la méthode reqNom()
+ *
+ *     Cas valide: vérifier le retour du nom du journal.
+ *     Cas invalide: aucun.
+ */
+TEST_F(UnJournal, reqNom)
+{
+	ASSERT_EQ("LE PETIT JOURNAL",journal.reqNom());
+}
+/**
+ * \test Test de la méthode reqVolume
+ *
+ *     Cas valide: vérifier le retour du volume du journal
+ *     Cas invalide: aucun.
+ */
+TEST_F(UnJournal,reqVolume){
+
+	ASSERT_EQ(10, journal.reqVolume());
+}
+/**
+ * \test Test de la méthode reqNumero
+ *
+ *     Cas valide: vérifier le retour du numero du journal
+ *     Cas invalide: aucun.
+ */
+TEST_F(UnJournal,reqNumero){
+
+	ASSERT_EQ(20, journal.reqNumero());
+}
+/**
+ * \test Test de la méthode reqPage
+ *
+ *     Cas valide: vérifier le retour de la page du journal
+ *     Cas invalide: aucun.
+ */
+TEST_F(UnJournal,reqPage){
+
+	ASSERT_EQ(30, journal.reqPage());
+}
+/**
+ * \test Test de la méthode std::string reqReferenceFormate();
+ *        Cas valides: vérifier le retour des information sur l'objet Journal formaté
+ *        Cas invalides: aucun
+ */
+TEST_F(UnJournal,reqReferenceFormate)
+{
+	ostringstream os;
+	os << journal.reqAuteurs() << ". " << journal.reqTitre() << ". " << journal.reqNom() << ", vol. " << journal.reqVolume() << ", no. " << journal.reqNumero() << ", pp. " << journal.reqPage() << ", " << journal.reqAnnee() << ". " << journal.reqIdentifiant() << ".";
+	ASSERT_EQ(os.str(),journal.reqReferenceFormate());
+}
+/**
+ * \test Test de la méthode asgNom
+ *
+ *     Cas valide: Mettre un nom valide
+ *     Cas invalide: Mettre un nom invalide (vide).
+ */
+TEST_F(UnJournal, nomValide)
+{
+	journal.asgNom("Pex");
+}
+//cas invalide
+TEST_F(UnJournal, nomVideInvalide)
+{
+	ASSERT_THROW(journal.asgNom(""),PreconditionException);
+}
+/**
+ * \test Test de la méthode asgVolume
+ *
+ *     Cas valide: Mettre un volume valide
+ *     Cas invalide: Mettre un volume invalide (=0).
+ */
+TEST_F(UnJournal, volumeValide)
+{
+	journal.asgVolume(10);
+}
+//cas invalide
+TEST_F(UnJournal, volumeInvalide)
+{
+	ASSERT_THROW(journal.asgVolume(0),PreconditionException);
+}
+/**
+ * \test Test de la méthode asgNumero
+ *
+ *     Cas valide: Mettre un numero valide
+ *     Cas invalide: Mettre un numero invalide (=0).
+ */
+TEST_F(UnJournal, numeroValide)
+{
+	journal.asgNumero(20);
+}
+//cas invalide
+TEST_F(UnJournal, numeroInvalide)
+{
+	ASSERT_THROW(journal.asgNumero(0),PreconditionException);
+}
+/**
+ * \test Test de la méthode asgPage
+ *
+ *     Cas valide: Mettre une page valide
+ *     Cas invalide: Mettre une page invalide (=0).
+ */
+TEST_F(UnJournal, pageValide)
+{
+	journal.asgPage(100);
+}
+//cas invalide
+TEST_F(UnJournal, pageInvalide)
+{
+	ASSERT_THROW(journal.asgPage(0),PreconditionException);
+}
+/**
+ * \test Test de la méthode clone
+ *
+ *     Cas valide: Cloner une reference
+ *     Cas invalide: Aucun d'identifié
+ */
+TEST_F(UnJournal, clone)
+{
+	string journalClone=journal.clone()->reqReferenceFormate();
+	ASSERT_EQ(journalClone,journal.reqReferenceFormate());
+}
+
+/*int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}*/
+
+/** @} Fin defgroup*/

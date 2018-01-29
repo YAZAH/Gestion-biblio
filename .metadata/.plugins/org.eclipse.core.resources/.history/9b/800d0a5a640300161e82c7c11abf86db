@@ -1,0 +1,35 @@
+#include "bibliographiegui.h"
+#include "Journal.h"
+#include "Bibliographie.h"
+//#include "interface.h"
+#include "Ouvrage.h"
+#include <QMessageBox>
+#include <sstream>
+#include <iostream>
+using namespace tp;
+using namespace std;
+
+bibliographieGui::bibliographieGui(QWidget *parent)
+    : QMainWindow(parent)
+{
+	ui.setupUi(this);
+}
+
+bibliographieGui::~bibliographieGui()
+{
+	for (size_t i = 0; i < m_vReferences.size(); i++) {
+			delete m_vReferences[i];
+		}
+
+}
+
+// ajout d'un employé commission dans le vector
+void bibliographieGui::ajouterJournal(const std::string& p_auteurs, const std::string& p_titre, const std::string& p_identifiant, unsigned p_annee, const std::string& p_nom, unsigned p_volume, unsigned p_numero, unsigned p_page)
+{
+	//ajout d'un employé à commission
+	Journal JournalAjout(p_auteurs, p_titre, p_identifiant, p_annee, p_nom, p_volume, p_numero, p_page);
+	EmployeCommission employe_commis(p_nom, p_prenom, p_dateNaissance,p_salaire, p_commission, p_quantite, 1);
+	if (!this->ReferenceEstDejaPresente(JournalAjout.reqIdentifiant())) {
+		bibliographie.ajouterReference(JournalAjout); // ajout du journal dans le vector
+	}
+}

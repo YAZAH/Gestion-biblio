@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>bibliographieGuiClass</class>
+ <widget class="QMainWindow" name="bibliographieGuiClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>586</width>
+    <height>355</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTextEdit" name="affichageBiblio">
+    <property name="geometry">
+     <rect>
+      <x>13</x>
+      <y>10</y>
+      <width>561</width>
+      <height>281</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>586</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <widget class="QMenu" name="menuReference">
+     <property name="title">
+      <string>Ajouter une référence</string>
+     </property>
+     <addaction name="actionAjoutJournal"/>
+     <addaction name="separator"/>
+     <addaction name="actionAjoutOuvrage"/>
+    </widget>
+    <addaction name="menuReference"/>
+    <addaction name="separator"/>
+    <addaction name="actionSupprimerRef"/>
+    <addaction name="separator"/>
+    <addaction name="actionAfficherBiblio"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuitter"/>
+   </widget>
+   <addaction name="menuMenu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="actionAjouter_un_journal">
+   <property name="text">
+    <string>Ajouter un journal</string>
+   </property>
+  </action>
+  <action name="actionAjouter_un_ouvrage">
+   <property name="text">
+    <string>Ajouter un ouvrage</string>
+   </property>
+  </action>
+  <action name="actionJournal">
+   <property name="text">
+    <string>Journal</string>
+   </property>
+  </action>
+  <action name="actionOuvrage">
+   <property name="text">
+    <string>Ouvrage</string>
+   </property>
+  </action>
+  <action name="actionSupprimerRef">
+   <property name="text">
+    <string>Supprimer une référence</string>
+   </property>
+  </action>
+  <action name="actionAfficherBiblio">
+   <property name="text">
+    <string>Afficher la bibliographie</string>
+   </property>
+  </action>
+  <action name="actionQuitter">
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+  </action>
+  <action name="actionAjoutJournal">
+   <property name="text">
+    <string>Journal</string>
+   </property>
+  </action>
+  <action name="actionAjoutOuvrage">
+   <property name="text">
+    <string>Ouvrage</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+ <slots>
+  <slot>afficheAjoutJournal()</slot>
+  <slot>afficheAjoutOuvrage()</slot>
+  <slot>afficheSuppressionReference()</slot>
+ </slots>
+</ui>

@@ -1,0 +1,52 @@
+/*
+ * Reference.h
+ * \brief Fichier d'entête de la classe Reference
+ * \author Sativen Murden
+ * \version 1.0
+ * \date 2016-04-02
+ */
+
+#ifndef REFERENCE_H_
+#define REFERENCE_H_
+#include <string>
+#include "ContratException.h"
+#include "validationFormat.h"
+namespace tp {
+/**
+ * \nom de la classe de base Reference
+ * \brief Classe permettant de documenter une reference
+ */
+class Reference {
+public:
+	Reference(const std::string& p_auteurs= "Paul Chevalier", const std::string& p_titre= "Speed Kills",
+			const std::string& p_identifiant= "978332256430", unsigned p_annee=2014);
+
+	const std::string& reqAuteurs() const;
+	const std::string& reqTitre()const;
+	const std::string& reqIdentifiant()const;
+	unsigned reqAnnee() const;
+
+	void asgAuteurs(const std::string& p_auteurs);
+	void asgTitre(const std::string& p_titre);
+	void asgIdentifiant(const std::string& p_identifiant);
+	void asgAnnee(unsigned p_annee);
+
+	void asgAuteurs(const std::string& p_auteurs);
+	bool operator ==(const Reference& p_reference);
+	virtual std::string reqReferenceFormate() const=0;
+	virtual Reference* clone() const=0;
+	virtual ~Reference();
+
+
+
+private:
+		std::string m_auteurs;
+		std::string m_titre;
+		std::string m_identifiant;
+		unsigned m_annee;
+		void verifieInvariant() const;
+};
+
+} /* namespace tp */
+
+#endif /* REFERENCE_H_ */

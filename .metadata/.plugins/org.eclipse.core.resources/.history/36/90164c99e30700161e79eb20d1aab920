@@ -1,0 +1,31 @@
+#include "supprimerref.h"
+#include <QMessageBox>
+
+supprimerRef::supprimerRef(QWidget *parent)
+    : QDialog(parent)
+{
+	ui.setupUi(this);
+	QObject::connect(ui.BoutonSupprimer, SIGNAL(clicked()), this, SLOT(accept()));
+
+}
+
+supprimerRef::~supprimerRef()
+{
+
+}
+
+QString supprimerRef::retourneASupprimer(){
+	QMessageBox msgBox;
+	msgBox.setWindowTitle("Confirmation");
+	msgBox.setText("Voulez-vous vraiment supprimer cette référence?");
+	msgBox.setStandardButtons(QMessageBox::Yes);
+	msgBox.addButton(QMessageBox::No);
+	msgBox.setDefaultButton(QMessageBox::No);
+	if(msgBox.exec() == QMessageBox::Yes){
+	  return ui.lineEdit_supprime->text();
+	}
+	else {
+		//msgBox.close(); // Ça ferme toute la fenêtre
+	}
+}
+

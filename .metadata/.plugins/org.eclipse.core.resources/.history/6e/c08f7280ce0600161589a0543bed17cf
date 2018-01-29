@@ -1,0 +1,20 @@
+TEMPLATE = app
+TARGET = Interface
+QT += core \
+    gui
+HEADERS += ../Interface/ajoutjournal.h \
+    ../Interface/ajoutouvrage.h \
+    ../Interface/bibliographiegui.h \
+    ../Interface/supprimerref.h
+SOURCES += ../Interface/ajoutjournal.cpp \
+    ../Interface/ajoutouvrage.cpp \
+    ../Interface/bibliographiegui.cpp \
+    ../Interface/supprimerref.cpp \
+    main.cpp
+FORMS += ../Interface/ajoutouvrage.ui \
+    ../Interface/bibliographiegui.ui \
+    ../Interface/supprimerref.ui \
+    ../Interface/ajoutjournal.ui
+RESOURCES += 
+LIBS += "../source/Debug/libsource.a"
+INCLUDEPATH += "../source/."

@@ -1,0 +1,15 @@
+#include "supprimerref.h"
+#include <QMessageBox>
+
+supprimerRef::supprimerRef(QWidget *parent)
+    : QDialog(parent)
+{
+	ui.setupUi(this);
+	QObject::connect(ui.BoutonSupprimer, SIGNAL(clicked()), this, SLOT(accept()));
+
+}
+
+supprimerRef::~supprimerRef()
+{
+
+}

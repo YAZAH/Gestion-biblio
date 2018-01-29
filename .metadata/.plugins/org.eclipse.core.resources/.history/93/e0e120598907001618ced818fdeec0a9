@@ -1,0 +1,12 @@
+#include "interface.h"
+
+Interface::Interface(QWidget *parent)
+    : QWidget(parent)
+{
+	ui.setupUi(this);
+}
+
+Interface::~Interface()
+{
+
+}

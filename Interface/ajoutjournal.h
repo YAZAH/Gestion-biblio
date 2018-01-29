@@ -1,0 +1,34 @@
+#ifndef AJOUTJOURNAL_H
+#define AJOUTJOURNAL_H
+
+#include <QtGui/QDialog>
+#include "ui_ajoutjournal.h"
+#include "../source/Journal.h"
+
+class ajoutJournal : public QDialog
+{
+    Q_OBJECT
+
+public:
+    ajoutJournal(QWidget *parent = 0);
+    ~ajoutJournal();
+    void ajouterJournal();
+
+    // Accesseurs
+    QString reqAuteurs() const;
+   	QString reqTitre() const;
+   	QString reqIdentifiant() const;
+   	int reqAnnee() const;
+   	QString reqNom() const;
+   	int reqVolume() const;
+   	int reqNumero() const;
+   	int reqPage() const;
+
+private slots:
+	void validerJournal();
+
+private:
+    Ui::ajoutJournalClass ui;
+};
+
+#endif // AJOUTJOURNAL_H
